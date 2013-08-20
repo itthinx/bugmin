@@ -34,7 +34,7 @@ define( 'BUGMIN_PLUGIN_DOMAIN', 'bugmin' );
  * Bugmin class - admin notices.
  */
 class Bugmin {
-	
+
 	/**
 	 * Registers our admin_notices action.
 	 */
@@ -42,7 +42,7 @@ class Bugmin {
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 	}
-	
+
 	/**
 	 * Prints the screen id and invokes actions hooked on bugmin_screen.
 	 */
@@ -58,7 +58,7 @@ class Bugmin {
 		}
 
 		do_action( 'bugmin_screen', $screen );
-		
+
 		if ( isset( $screen->id ) && $screen->id == 'settings_page_bugmin' && isset( $_POST['action'] ) && ( $_POST['action'] == 'save' ) && wp_verify_nonce( $_POST['bugmin'], 'admin' ) ) {
 			echo '<div>';
 			echo '<pre>';
@@ -111,7 +111,7 @@ class Bugmin {
 			do_action( 'bugmin_after_eval', $eval, $screen );
 		}
 	}
-	
+
 	/**
 	 * Add the Settings > Bugmin section.
 	 */
@@ -166,7 +166,6 @@ class Bugmin {
 		printf( '<input type="checkbox" name="bugmin_eval_enabled" %s />', $bugmin_eval_enabled == 'yes' ? ' checked="checked" ' : '' );
 		echo __( 'Enable code execution with eval. Parse errors will disable this - WSOD may still happen though so check your code before testing it.', BUGMIN_PLUGIN_DOMAIN );
 		echo '</label>';
-		
 
 		echo '<h2>' . sprintf( __( '<a href="%s">eval</a>', BUGMIN_PLUGIN_DOMAIN ), 'http://php.net/manual/en/function.eval.php' ) . '</h2>';
 
@@ -204,38 +203,6 @@ class Bugmin {
 		echo '</form>';
 		echo '</div>';
 	}
-	
-	
-	
-	
-	
-	
-	// @todo remove
-// 	function gw_admin_notices() {
-		
-// 		$screen = get_current_screen();
-// 		echo '<div>';
-// 		echo sprintf( 'Hey, this is the <code>%s</code> screen', $screen->id, true );
-// 		echo '</div>';
-	
-// 		if ( $user_id = get_current_user_id() ) {
-	
-// 			$user = new Groups_User( $user_id );
-// 			$group_ids = $user->group_ids;
-// 			foreach( $group_ids as $group_id ) {
-// 				echo '<p> group id : ' . $group_id . '</p>';
-					
-// 				$order_ids = Groups_WS_Handler::get_valid_order_ids_granting_group_membership_from_order_items( $user_id, $group_id );
-// 				echo '<p>';
-// 				echo ' order ids : ' . var_export( $order_ids, true );
-// 				echo '</p>';
-// 			}
-	
-// 			//
-// 			// 		error_log( ' ********** ' . __FUNCTION__ . " $user_id : " . var_export( $order_ids, true ));
-// 		}
-// 	}
-	
-	
+
 }
 Bugmin::init();
