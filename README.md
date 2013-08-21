@@ -4,7 +4,8 @@ bugmin
 Minimal WordPress debugging helper showing traces in admin sections.
 
 
-------------------------------- S T O P ------------------------------------
+* * *   S T O P   * * *
+-----------------------
 
 Do NOT USE THIS PLUGIN unless you are an experienced PHP developer!
 
